@@ -1,5 +1,7 @@
 package com.cibersoftcys.canchawebpro.Canchas.aplicacion.mapeadores;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Component;
 
 import com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos.CanchaRequest;
@@ -32,6 +34,11 @@ public class CanchaMapperApli {
                     : null
             );
         }
+        response.setPrecioPorHora(
+            cancha.getPrecioPorHora() != null 
+                ? cancha.getPrecioPorHora().getValor() 
+                : BigDecimal.ZERO
+        );
         return response;
 
     }

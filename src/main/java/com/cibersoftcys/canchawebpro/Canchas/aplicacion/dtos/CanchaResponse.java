@@ -10,6 +10,7 @@ import lombok.Data;
     "nombre",
     "tipo",
     "imagenUrl",
+    "estado",
     "sedeId",
     "sede"
 })
@@ -21,6 +22,7 @@ public class CanchaResponse {
     private String nombre;
     private String tipo;
     private String imagenUrl;
+    private String estado;
     private Long sedeId;
     private String sede;
 

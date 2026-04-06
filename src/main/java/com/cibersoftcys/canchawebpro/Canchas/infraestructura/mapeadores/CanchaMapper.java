@@ -31,11 +31,11 @@ public class CanchaMapper {
         if (entidad == null) return null;
 
         NombreCancha nombre = new NombreCancha(entidad.getNombre());
-
         Cancha cancha = new Cancha(
             nombre,
             entidad.getTipo(),
-            entidad.getImagenUrl()
+            entidad.getImagenUrl(),
+            entidad.getEstado()
         );
 
         cancha.setId(entidad.getId());

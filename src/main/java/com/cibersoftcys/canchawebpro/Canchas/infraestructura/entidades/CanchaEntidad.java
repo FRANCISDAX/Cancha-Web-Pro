@@ -2,6 +2,7 @@ package com.cibersoftcys.canchawebpro.Canchas.infraestructura.entidades;
 
 import java.time.LocalDateTime;
 
+import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.EstadoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Sedes.infraestructura.entidades.SedeEntidad;
 
@@ -39,7 +40,11 @@ public class CanchaEntidad {
 
     @Column(name="imagen_url", length=255)
     private String imagenUrl;
-    
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="estado", nullable=false)
+    private EstadoCancha estado;
+
     @Enumerated(EnumType.STRING)
     @Column(name="tipo", nullable=false)
     private TipoCancha tipo;

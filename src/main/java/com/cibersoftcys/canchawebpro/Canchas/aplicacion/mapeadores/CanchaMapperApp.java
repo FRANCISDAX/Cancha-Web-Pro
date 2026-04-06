@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos.CanchaRequest;
 import com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos.CanchaResponse;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.Cancha;
-import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.EstadoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
 
@@ -39,12 +38,10 @@ public class CanchaMapperApp {
 
         NombreCancha nombre = new NombreCancha(request.getNombre());
         TipoCancha tipo = request.getTipo();
-        EstadoCancha estado = request.getEstado();
         return new Cancha(
             nombre,
             tipo,
-            request.getImagenUrl(),
-            estado
+            request.getImagenUrl()
         );
     }
 

@@ -34,8 +34,7 @@ public class CanchaMapper {
         Cancha cancha = new Cancha(
             nombre,
             entidad.getTipo(),
-            entidad.getImagenUrl(),
-            entidad.getEstado()
+            entidad.getImagenUrl()
         );
 
         cancha.setId(entidad.getId());

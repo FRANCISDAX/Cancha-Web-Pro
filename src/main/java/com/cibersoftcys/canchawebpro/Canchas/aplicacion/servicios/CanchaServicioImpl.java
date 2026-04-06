@@ -85,7 +85,7 @@ public class CanchaServicioImpl implements CanchaServicioPuerto, CanchaDominioPu
         NombreCancha nombre = new NombreCancha(request.getNombre());
         TipoCancha tipo = request.getTipo();
 
-        cancha.actualizarDatos(nombre, tipo, request.getImagenUrl());
+        cancha.actualizarDatos(nombre, tipo, request.getImagenUrl(), request.getPrecioPorHora());
         Cancha actualizada = canchaRepositorioPuerto.guardar(cancha);
         return canchaMapperApp.toResponse(actualizada);
     }

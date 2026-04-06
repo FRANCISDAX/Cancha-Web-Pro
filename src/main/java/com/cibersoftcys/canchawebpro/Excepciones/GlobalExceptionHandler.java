@@ -123,7 +123,7 @@ public class GlobalExceptionHandler {
         error.put("error", "Violación de integridad de datos");
         error.put("details", mensajeUsuario);
         error.put("path", request.getRequestURI());
-
+        log.warn("No Encontrado : {}",ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 

@@ -1,5 +1,7 @@
 package com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos;
 
+import java.math.BigDecimal;
+
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,6 +24,9 @@ public class CanchaRequest {
     
     @Schema(description = "Imagen de la Cancha", example = "IMAGEN_FUTBOL.jpg")
     private String imagenUrl;
+
+    @Schema(description = "Precio por Hora de la Cancha", example = "100.00")
+    private BigDecimal precioPorHora;
 
     @Schema(description = "Sede de la Cancha", example = "1")
     private Long sedeId;

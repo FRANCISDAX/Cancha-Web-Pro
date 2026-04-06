@@ -44,7 +44,8 @@ public class CanchaMapperApli {
         return new Cancha(
             nombre,
             tipo,
-            request.getImagenUrl()
+            request.getImagenUrl(),
+            request.getPrecioPorHora()
         );
     }
 

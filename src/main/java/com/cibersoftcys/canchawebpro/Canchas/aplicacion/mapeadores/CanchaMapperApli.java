@@ -7,6 +7,7 @@ import com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos.CanchaResponse;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.Cancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
+import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.Precio;
 
 @Component
 public class CanchaMapperApli {
@@ -41,11 +42,12 @@ public class CanchaMapperApli {
 
         NombreCancha nombre = new NombreCancha(request.getNombre());
         TipoCancha tipo = request.getTipo();
+        Precio precioPorHora = Precio.of(request.getPrecioPorHora());
         return new Cancha(
             nombre,
             tipo,
             request.getImagenUrl(),
-            request.getPrecioPorHora()
+            precioPorHora
         );
     }
 

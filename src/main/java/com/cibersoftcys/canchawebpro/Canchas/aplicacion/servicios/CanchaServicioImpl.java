@@ -12,6 +12,7 @@ import com.cibersoftcys.canchawebpro.Canchas.aplicacion.mapeadores.CanchaMapperA
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.Cancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
+import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.Precio;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.puertos.entrada.CanchaDominioPuerto;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.puertos.entrada.CanchaServicioPuerto;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.puertos.salida.CanchaRepositorioPuerto;
@@ -84,8 +85,9 @@ public class CanchaServicioImpl implements CanchaServicioPuerto, CanchaDominioPu
 
         NombreCancha nombre = new NombreCancha(request.getNombre());
         TipoCancha tipo = request.getTipo();
+        Precio precioPorHora = Precio.of(request.getPrecioPorHora());
 
-        cancha.actualizarDatos(nombre, tipo, request.getImagenUrl(), request.getPrecioPorHora());
+        cancha.actualizarDatos(nombre, tipo, request.getImagenUrl(), precioPorHora);
         Cancha actualizada = canchaRepositorioPuerto.guardar(cancha);
         return canchaMapperApp.toResponse(actualizada);
     }

@@ -22,6 +22,7 @@ public class CanchaMapperInfra {
             .tipo(cancha.getTipo())
             .imagenUrl(cancha.getImagenUrl())
             .estado(cancha.getEstado())
+            .precioPorHora(cancha.getPrecioPorHora().getValor())
             .fechaCreacion(cancha.getFechaCreacion())
             .fechaActualizacion(cancha.getFechaActualizacion())
             .sede(mapearSedeEntidad(cancha.getSede()))

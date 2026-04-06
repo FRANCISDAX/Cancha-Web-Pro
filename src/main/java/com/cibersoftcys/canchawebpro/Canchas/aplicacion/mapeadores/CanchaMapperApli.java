@@ -34,11 +34,7 @@ public class CanchaMapperApli {
                     : null
             );
         }
-        response.setPrecioPorHora(
-            cancha.getPrecioPorHora() != null 
-                ? cancha.getPrecioPorHora().getValor() 
-                : BigDecimal.ZERO
-        );
+        response.setPrecioPorHora(cancha.getPrecioPorHora() != null ? cancha.getPrecioPorHora().getValor() : BigDecimal.ZERO);
         return response;
 
     }
@@ -47,6 +43,10 @@ public class CanchaMapperApli {
     public Cancha toDomain(CanchaRequest request) {
         if(request == null) return null;
 
+        if(request.getPrecioPorHora() == null) {
+            throw new IllegalArgumentException("El precio no puede ser nulo");
+        }
+        
         NombreCancha nombre = new NombreCancha(request.getNombre());
         TipoCancha tipo = request.getTipo();
         Precio precioPorHora = Precio.of(request.getPrecioPorHora());

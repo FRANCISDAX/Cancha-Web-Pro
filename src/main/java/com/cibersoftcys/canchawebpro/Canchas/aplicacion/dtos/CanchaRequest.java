@@ -3,9 +3,11 @@ package com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos;
 import java.math.BigDecimal;
 
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -18,7 +20,7 @@ public class CanchaRequest {
     @Schema(description = "Nombre de la Cancha", example = "CANCHA FUTBOL 01")
     private String nombre;
 
-    @NotBlank(message="El Tipo de Cancha es obligatorio.")
+    @NotNull(message="El Tipo de Cancha es obligatorio.")
     @Schema(description = "Tipo de Cancha", example = "FUTBOL")
     private TipoCancha tipo;
     
@@ -26,6 +28,8 @@ public class CanchaRequest {
     private String imagenUrl;
 
     @Schema(description = "Precio por Hora de la Cancha", example = "100.00")
+    @NotNull(message="El precio es obligatorio.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private BigDecimal precioPorHora;
 
     @Schema(description = "Sede de la Cancha", example = "1")

@@ -12,5 +12,7 @@ public interface CanchaServicioPuerto {
     List<CanchaResponse> obtenerTodasCanchas();
     CanchaResponse actualizarCancha(Long id, CanchaRequest request);
     void eliminarCancha(Long id);
+    void ponerEnMantenimiento(Long id);
+    void activarCancha(Long id);
 
 }

@@ -27,11 +27,11 @@ public class Cancha {
     // 🔥 Constructores.
     public Cancha() {}
 
-    public Cancha(NombreCancha nombre, TipoCancha tipo, String imagenUrl, EstadoCancha estado) {
+    public Cancha(NombreCancha nombre, TipoCancha tipo, String imagenUrl) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.imagenUrl = imagenUrl;
-        this.estado = estado;
+        this.estado = EstadoCancha.DISPONIBLE;
         this.fechaCreacion = LocalDateTime.now();
         this.fechaActualizacion = this.fechaCreacion;
     }
@@ -55,7 +55,6 @@ public class Cancha {
         this.nombre = nombre;
         this.tipo = tipo;
         this.imagenUrl = imagenUrl;
-        this.estado = EstadoCancha.DISPONIBLE;
         actualizar();
     }
 
@@ -90,33 +89,17 @@ public class Cancha {
         this.fechaActualizacion = LocalDateTime.now();
     }
 
-    public void ponerEnMantenimiento() {
-        if (this.estado == EstadoCancha.OCUPADA) {
-            throw new BusinessValidationException("No puedes poner en Mantenimiento una cancha Ocupada.");
+    public void ponerEnMantenimientoCancha() {
+        if (this.estado == EstadoCancha.MANTENIMIENTO) {
+            throw new BusinessValidationException("La Cancha ya está en Mantenimiento.");
         }
         this.estado = EstadoCancha.MANTENIMIENTO;
         actualizar();
     }
 
-    public void activar() {
-        if (this.estado == EstadoCancha.OCUPADA) {
-            throw new BusinessValidationException("No puedes Activar una cancha Ocupada.");
-        }
-        this.estado = EstadoCancha.DISPONIBLE;
-        actualizar();
-    }
-
-    public void ocupar() {
-        if (this.estado != EstadoCancha.DISPONIBLE) {
-            throw new BusinessValidationException("La Cancha no está Disponible.");
-        }
-        this.estado = EstadoCancha.OCUPADA;
-        actualizar();
-    }
-
-    public void liberar() {
-        if (this.estado != EstadoCancha.OCUPADA) {
-            throw new BusinessValidationException("La Cancha no está Ocupada.");
+    public void ponerEnDisponibleCancha() {
+        if (this.estado == EstadoCancha.DISPONIBLE) {
+            throw new BusinessValidationException("La Cancha ya está Disponible.");
         }
         this.estado = EstadoCancha.DISPONIBLE;
         actualizar();

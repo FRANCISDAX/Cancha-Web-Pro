@@ -93,4 +93,20 @@ public class CanchaServicioImpl implements CanchaServicioPuerto, CanchaDominioPu
         canchaRepositorioPuerto.eliminar(id);
     }
 
+    @Override
+    public void ponerEnMantenimiento(Long id) {
+        Cancha cancha = canchaRepositorioPuerto.buscarPorId(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Cancha no encontrada con id: " + id));
+        cancha.ponerEnMantenimientoCancha();
+        canchaRepositorioPuerto.guardar(cancha);
+    }
+
+    @Override
+    public void activarCancha(Long id) {
+        Cancha cancha = canchaRepositorioPuerto.buscarPorId(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Cancha no encontrada con id: " + id));
+        cancha.ponerEnDisponibleCancha();
+        canchaRepositorioPuerto.guardar(cancha);
+    }
+
 }

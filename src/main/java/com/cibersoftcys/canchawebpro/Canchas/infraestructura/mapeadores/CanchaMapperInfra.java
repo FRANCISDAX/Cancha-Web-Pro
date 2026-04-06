@@ -35,7 +35,8 @@ public class CanchaMapperInfra {
         Cancha cancha = new Cancha(
             nombre,
             entidad.getTipo(),
-            entidad.getImagenUrl()
+            entidad.getImagenUrl(),
+            entidad.getPrecioPorHora()
         );
 
         cancha.ponerEstadoDesdePersistencia(entidad.getEstado());

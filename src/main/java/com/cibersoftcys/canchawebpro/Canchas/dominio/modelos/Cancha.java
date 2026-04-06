@@ -1,5 +1,6 @@
 package com.cibersoftcys.canchawebpro.Canchas.dominio.modelos;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Cancha {
     private TipoCancha tipo;
     private String imagenUrl;
     private EstadoCancha estado;
+    private BigDecimal precioPorHora;
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
     private Sede sede;
@@ -27,10 +29,11 @@ public class Cancha {
     // 🔥 Constructores.
     public Cancha() {}
 
-    public Cancha(NombreCancha nombre, TipoCancha tipo, String imagenUrl) {
+    public Cancha(NombreCancha nombre, TipoCancha tipo, String imagenUrl, BigDecimal precioPorHora) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.imagenUrl = imagenUrl;
+        this.precioPorHora = precioPorHora;
         this.estado = EstadoCancha.DISPONIBLE;
         this.fechaCreacion = LocalDateTime.now();
         this.fechaActualizacion = this.fechaCreacion;
@@ -42,6 +45,7 @@ public class Cancha {
     public TipoCancha getTipo() { return tipo; }
     public EstadoCancha getEstado() { return estado; }
     public String getImagenUrl() { return imagenUrl; }
+    public BigDecimal getPrecioPorHora() { return precioPorHora; }
     public Sede getSede() { return sede; }
     public LocalDateTime getFechaCreacion() { return fechaCreacion; }
     public LocalDateTime getFechaActualizacion() { return fechaActualizacion; }
@@ -51,10 +55,11 @@ public class Cancha {
     public void setId(Long id) { this.id = id; }
 
     // 🧠 Reglas de negocio
-    public void actualizarDatos(NombreCancha nombre, TipoCancha tipo, String imagenUrl) {
+    public void actualizarDatos(NombreCancha nombre, TipoCancha tipo, String imagenUrl, BigDecimal precioPorHora) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.imagenUrl = imagenUrl;
+        this. precioPorHora = precioPorHora;
         actualizar();
     }
 

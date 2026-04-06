@@ -1,5 +1,6 @@
 package com.cibersoftcys.canchawebpro.Canchas.infraestructura.entidades;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.EstadoCancha;
@@ -42,6 +43,9 @@ public class CanchaEntidad {
 
     @Column(name="imagen_url", length=255)
     private String imagenUrl;
+
+    @Column(name="precio_hora")
+    private BigDecimal precioPorHora;
 
     @Enumerated(EnumType.STRING)
     @Column(name="estado", nullable=false)

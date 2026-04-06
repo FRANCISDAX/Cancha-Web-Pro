@@ -20,6 +20,7 @@ public class CanchaMapperInfra {
             .nombre(cancha.getNombre().getValor())
             .tipo(cancha.getTipo())
             .imagenUrl(cancha.getImagenUrl())
+            .estado(cancha.getEstado())
             .fechaCreacion(cancha.getFechaCreacion())
             .fechaActualizacion(cancha.getFechaActualizacion())
             .sede(mapearSedeEntidad(cancha.getSede()))
@@ -37,6 +38,8 @@ public class CanchaMapperInfra {
             entidad.getImagenUrl()
         );
 
+        cancha.ponerEstadoDesdePersistencia(entidad.getEstado());
+        
         cancha.setId(entidad.getId());
         if (entidad.getSede() != null) {
             SedeEntidad sedeEntidad = entidad.getSede();

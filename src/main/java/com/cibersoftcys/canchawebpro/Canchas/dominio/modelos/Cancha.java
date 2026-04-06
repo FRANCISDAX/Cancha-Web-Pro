@@ -105,4 +105,8 @@ public class Cancha {
         actualizar();
     }
 
+    public void ponerEstadoDesdePersistencia(EstadoCancha estado) {
+        this.estado = estado;
+    }
+    
 }

@@ -76,8 +76,11 @@ public class CanchaServicioImpl implements CanchaServicioPuerto, CanchaDominioPu
             throw new BusinessValidationException("Ya existe una Cancha con el nombre: " + request.getNombre());
         }
 
-        //Sede sede = sedeRepositorioPuerto.buscarPorId(request.getSedeId())
-        //.orElseThrow(() -> new ResourceNotFoundException("Sede no encontrada"));
+        if (request.getSedeId() != null) {
+            Sede sede = sedeRepositorioPuerto.buscarPorId(request.getSedeId())
+                .orElseThrow(() -> new ResourceNotFoundException("Sede no encontrada"));
+                sede.agregarCancha(cancha);
+        }
 
         NombreCancha nombre = new NombreCancha(request.getNombre());
         TipoCancha tipo = request.getTipo();

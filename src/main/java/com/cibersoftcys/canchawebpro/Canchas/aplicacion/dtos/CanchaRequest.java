@@ -1,6 +1,5 @@
 package com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos;
 
-import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.EstadoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,9 +22,6 @@ public class CanchaRequest {
     
     @Schema(description = "Imagen de la Cancha", example = "IMAGEN_FUTBOL.jpg")
     private String imagenUrl;
-
-    @Schema(description = "Estado de la Cancha", example = "DISPONIBLE")
-    private EstadoCancha estado;
 
     @Schema(description = "Sede de la Cancha", example = "1")
     private Long sedeId;

@@ -9,7 +9,7 @@ import com.cibersoftcys.canchawebpro.Sedes.dominio.modelos.Sede;
 import com.cibersoftcys.canchawebpro.Sedes.infraestructura.entidades.SedeEntidad;
 
 @Component
-public class CanchaMapper {
+public class CanchaMapperInfra {
 
     // ✅ Mapper Dominio → Entidad (Infraestructura)
     public CanchaEntidad paraEntidad(Cancha cancha) {

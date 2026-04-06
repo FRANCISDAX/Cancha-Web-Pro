@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.Cancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.puertos.salida.CanchaRepositorioPuerto;
 import com.cibersoftcys.canchawebpro.Canchas.infraestructura.entidades.CanchaEntidad;
-import com.cibersoftcys.canchawebpro.Canchas.infraestructura.mapeadores.CanchaMapper;
+import com.cibersoftcys.canchawebpro.Canchas.infraestructura.mapeadores.CanchaMapperInfra;
 import com.cibersoftcys.canchawebpro.Canchas.infraestructura.repositorios.PostgreCanchaRepositorio;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class CanchaRepositorioAdaptador implements CanchaRepositorioPuerto {
 
     private final PostgreCanchaRepositorio canchaJpaRepositorio;
-    private final CanchaMapper canchaMapper;
+    private final CanchaMapperInfra canchaMapper;
     
     @Override
     public Cancha guardar(Cancha cancha) {

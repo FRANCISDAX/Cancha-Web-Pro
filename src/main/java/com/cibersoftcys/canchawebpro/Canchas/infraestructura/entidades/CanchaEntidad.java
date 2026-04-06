@@ -16,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,5 +63,14 @@ public class CanchaEntidad {
     private SedeEntidad sede;
 
     //private List<Reserva> reservas = new ArrayList<>();
+
+    @PrePersist
+    public void prePersist() {
+        if (estado == null) {
+            estado = EstadoCancha.DISPONIBLE;
+        }
+        fechaCreacion = LocalDateTime.now();
+        fechaActualizacion = LocalDateTime.now();
+    }
 
 }

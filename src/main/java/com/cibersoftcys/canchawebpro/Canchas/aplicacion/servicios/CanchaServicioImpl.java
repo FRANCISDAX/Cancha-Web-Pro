@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos.CanchaRequest;
 import com.cibersoftcys.canchawebpro.Canchas.aplicacion.dtos.CanchaResponse;
-import com.cibersoftcys.canchawebpro.Canchas.aplicacion.mapeadores.CanchaMapperApp;
+import com.cibersoftcys.canchawebpro.Canchas.aplicacion.mapeadores.CanchaMapperApli;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.Cancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
@@ -29,7 +29,7 @@ public class CanchaServicioImpl implements CanchaServicioPuerto, CanchaDominioPu
 
     private final CanchaRepositorioPuerto canchaRepositorioPuerto;
     private final SedeRepositorioPuerto sedeRepositorioPuerto;
-    private final CanchaMapperApp canchaMapperApp;
+    private final CanchaMapperApli canchaMapperApp;
 
     @Override
     public Cancha obtenerCancha(Long id) {

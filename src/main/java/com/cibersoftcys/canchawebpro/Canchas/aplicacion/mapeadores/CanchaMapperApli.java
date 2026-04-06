@@ -9,7 +9,7 @@ import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
 
 @Component
-public class CanchaMapperApp {
+public class CanchaMapperApli {
 
     // ===== DOMAIN → RESPONSE =====
     public CanchaResponse toResponse(Cancha cancha) {
@@ -20,6 +20,9 @@ public class CanchaMapperApp {
         response.setNombre(cancha.getNombre().getValor());
         response.setTipo(cancha.getTipo().name().toUpperCase());
         response.setImagenUrl(cancha.getImagenUrl());
+        if (cancha.getEstado() != null) {
+            response.setEstado(cancha.getEstado().name());
+        }
         if (cancha.getSede() != null) {
             response.setSedeId(cancha.getSede().getId());
             response.setSede(

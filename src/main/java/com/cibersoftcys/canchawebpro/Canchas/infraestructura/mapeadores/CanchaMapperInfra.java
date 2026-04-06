@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.Cancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
+import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.Precio;
 import com.cibersoftcys.canchawebpro.Canchas.infraestructura.entidades.CanchaEntidad;
 import com.cibersoftcys.canchawebpro.Sedes.dominio.modelos.Sede;
 import com.cibersoftcys.canchawebpro.Sedes.infraestructura.entidades.SedeEntidad;
@@ -32,11 +33,12 @@ public class CanchaMapperInfra {
         if (entidad == null) return null;
 
         NombreCancha nombre = new NombreCancha(entidad.getNombre());
+        Precio precioPorHora = Precio.of(entidad.getPrecioPorHora());
         Cancha cancha = new Cancha(
             nombre,
             entidad.getTipo(),
             entidad.getImagenUrl(),
-            entidad.getPrecioPorHora()
+            precioPorHora
         );
 
         cancha.ponerEstadoDesdePersistencia(entidad.getEstado());

@@ -8,6 +8,7 @@ public class NombreSede {
 
     protected NombreSede() {}
 
+    // 🔥 Constructor.
     public NombreSede(String valor) {
         if (valor == null || valor.trim().isEmpty()) {
             throw new BusinessValidationException("El nombre de la Sede es obligatorio.");
@@ -18,6 +19,7 @@ public class NombreSede {
         this.valor = valor;
     }
 
+    // 🔧 Get.
     public String getValor() {
         return valor;
     }

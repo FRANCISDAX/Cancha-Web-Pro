@@ -1,6 +1,5 @@
 package com.cibersoftcys.canchawebpro.Canchas.dominio.modelos;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.List;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.EstadoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.enums.TipoCancha;
 import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.NombreCancha;
+import com.cibersoftcys.canchawebpro.Canchas.dominio.modelos.valueObject.Precio;
 import com.cibersoftcys.canchawebpro.Excepciones.BusinessValidationException;
 import com.cibersoftcys.canchawebpro.Reservas.dominio.modelos.Reserva;
 import com.cibersoftcys.canchawebpro.Sedes.dominio.modelos.Sede;
@@ -20,7 +20,7 @@ public class Cancha {
     private TipoCancha tipo;
     private String imagenUrl;
     private EstadoCancha estado;
-    private BigDecimal precioPorHora;
+    private Precio precioPorHora;
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
     private Sede sede;
@@ -29,7 +29,7 @@ public class Cancha {
     // 🔥 Constructores.
     public Cancha() {}
 
-    public Cancha(NombreCancha nombre, TipoCancha tipo, String imagenUrl, BigDecimal precioPorHora) {
+    public Cancha(NombreCancha nombre, TipoCancha tipo, String imagenUrl, Precio precioPorHora) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.imagenUrl = imagenUrl;
@@ -45,7 +45,7 @@ public class Cancha {
     public TipoCancha getTipo() { return tipo; }
     public EstadoCancha getEstado() { return estado; }
     public String getImagenUrl() { return imagenUrl; }
-    public BigDecimal getPrecioPorHora() { return precioPorHora; }
+    public Precio getPrecioPorHora() { return precioPorHora; }
     public Sede getSede() { return sede; }
     public LocalDateTime getFechaCreacion() { return fechaCreacion; }
     public LocalDateTime getFechaActualizacion() { return fechaActualizacion; }
@@ -55,7 +55,7 @@ public class Cancha {
     public void setId(Long id) { this.id = id; }
 
     // 🧠 Reglas de negocio
-    public void actualizarDatos(NombreCancha nombre, TipoCancha tipo, String imagenUrl, BigDecimal precioPorHora) {
+    public void actualizarDatos(NombreCancha nombre, TipoCancha tipo, String imagenUrl, Precio precioPorHora) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.imagenUrl = imagenUrl;
@@ -113,5 +113,5 @@ public class Cancha {
     public void ponerEstadoDesdePersistencia(EstadoCancha estado) {
         this.estado = estado;
     }
-    
+ 
 }

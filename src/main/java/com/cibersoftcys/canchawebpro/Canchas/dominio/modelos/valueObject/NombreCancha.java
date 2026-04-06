@@ -6,6 +6,7 @@ public class NombreCancha {
 
     protected NombreCancha() {}
 
+    // 🔥 Constructor.
     public NombreCancha(String valor) {
         if (valor == null || valor.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre de la cancha es obligatorio.");
@@ -16,6 +17,7 @@ public class NombreCancha {
         this.valor = valor;
     }
 
+    // 🔧 Get.
     public String getValor() {
         return valor;
     }

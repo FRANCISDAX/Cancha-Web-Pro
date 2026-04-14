@@ -76,16 +76,15 @@ public class Cancha {
     }
 
     public boolean estaDisponible(Reserva nuevaReserva) {
-        return true;
-        //return reservas.stream()
-        //        .noneMatch(r -> r.seCruzaCon(nuevaReserva));
+        return reservas.stream()
+            .filter(Reserva::estaActiva)
+            .noneMatch(r -> r.seCruzaCon(nuevaReserva));
     }
 
     public void agregarReserva(Reserva reserva) {
         if (!estaDisponible(reserva)) {
             throw new RuntimeException("La cancha no está disponible en ese horario.");
         }
-        //reserva.setCancha(this);
         reservas.add(reserva);
         actualizar();
     }

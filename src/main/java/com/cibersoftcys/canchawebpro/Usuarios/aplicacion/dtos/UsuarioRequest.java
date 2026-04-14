@@ -12,14 +12,18 @@ public class UsuarioRequest {
 
     @NotBlank(message="Nombre del Usuario es obligatorio.")
     @Size(max=50, message="El nombre no puede exceder de 50 caracteres.")
+    @Schema(description = "Nombre del Usuario", example = "JOHAN FRANZ")
     private String nombre;
 
     @NotBlank(message="Email es obligatorio.")
+    @Schema(description = "Email del Usuario", example = "ejemplo@ejemplo.com")
     private String email;
 
+    @Schema(description = "Fono del Usuario", example = "999 999 999")
     private String telefono;
 
     @NotNull(message="Tipo de Usuario es obligatorio.")
+    @Schema(description = "Tipo de Usuario", example = "CLIENTE")
     private TipoUsuario tipo;
 
 }

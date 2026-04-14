@@ -19,6 +19,8 @@ public class Reserva {
     private LocalDateTime fechaCreacion;
     
     // 🔥 Constructores.
+    public Reserva() {}
+    
     public Reserva(Usuario usuario, Cancha cancha, RangoHorario rangoHorario) {
         this.usuario = usuario;
         this.cancha = cancha;

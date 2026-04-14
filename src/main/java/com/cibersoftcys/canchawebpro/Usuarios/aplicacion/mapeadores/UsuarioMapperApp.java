@@ -32,7 +32,7 @@ public class UsuarioMapperApp {
             nombre,
             request.getEmail(),
             request.getTelefono(),
-            request.getTipo()
+            null
         );
     }
     

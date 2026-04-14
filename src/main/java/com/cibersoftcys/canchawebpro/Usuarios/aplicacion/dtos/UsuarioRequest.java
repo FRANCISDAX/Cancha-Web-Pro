@@ -1,6 +1,6 @@
 package com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos;
 
-import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.enums.TipoUsuario;
+//import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.enums.TipoUsuario;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
@@ -21,9 +21,5 @@ public class UsuarioRequest {
 
     @Schema(description = "Fono del Usuario", example = "999 999 999")
     private String telefono;
-
-    @NotNull(message="Tipo de Usuario es obligatorio.")
-    @Schema(description = "Tipo de Usuario", example = "CLIENTE")
-    private TipoUsuario tipo;
 
 }

@@ -23,7 +23,7 @@ public class Usuario {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
-        this.tipo = TipoUsuario.CLIENTE;
+        this.tipo = (tipo != null) ? tipo : TipoUsuario.CLIENTE;
         this.fechaRegistro = LocalDateTime.now();
     }
 

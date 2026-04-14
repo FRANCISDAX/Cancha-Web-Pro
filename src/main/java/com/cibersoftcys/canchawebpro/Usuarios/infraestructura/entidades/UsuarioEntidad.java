@@ -2,6 +2,8 @@ package com.cibersoftcys.canchawebpro.Usuarios.infraestructura.entidades;
 
 import java.time.LocalDateTime;
 
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.enums.TipoUsuario;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +27,10 @@ public class UsuarioEntidad {
 
     @Column(name = "telefono", length = 20)
     private String telefono;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", nullable = false)
+    private TipoUsuario tipo;
 
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;

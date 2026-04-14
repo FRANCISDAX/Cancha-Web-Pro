@@ -2,11 +2,15 @@ package com.cibersoftcys.canchawebpro.Usuarios.infraestructura.adaptadores;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.Usuario;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.puertos.salida.UsuarioRepositorioPuerto;
+import com.cibersoftcys.canchawebpro.Usuarios.infraestructura.entidades.UsuarioEntidad;
+import com.cibersoftcys.canchawebpro.Usuarios.infraestructura.mapeadores.UsuarioMapper;
+import com.cibersoftcys.canchawebpro.Usuarios.infraestructura.repositorios.PostgreUsuarioRepositorio;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,19 +18,29 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioRepositorioAdaptador implements UsuarioRepositorioPuerto{
 
+    private final PostgreUsuarioRepositorio usuarioJpaRepositorio;
+    private final UsuarioMapper usuarioMapper;
+
     @Override
     public Usuario guardar(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UsuarioEntidad entidad = usuarioMapper.paraEntidad(usuario);
+        UsuarioEntidad entidadGrabada = usuarioJpaRepositorio.save(entidad);
+
+        return usuarioMapper.paraDominio(entidadGrabada);
     }
 
     @Override
     public Optional<Usuario> buscarPorId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return usuarioJpaRepositorio.findById(id)
+            .map(usuarioMapper::paraDominio);
     }
 
     @Override
     public List<Usuario> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return usuarioJpaRepositorio.findAll()
+            .stream()
+            .map(usuarioMapper::paraDominio)
+            .collect(Collectors.toList());
     }
 
     @Override

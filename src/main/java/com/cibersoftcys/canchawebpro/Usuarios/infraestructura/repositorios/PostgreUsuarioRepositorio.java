@@ -9,8 +9,8 @@ import com.cibersoftcys.canchawebpro.Usuarios.infraestructura.entidades.UsuarioE
 
 public interface PostgreUsuarioRepositorio extends  JpaRepository<UsuarioEntidad, Long>{
 
-    boolean existsByNombreValor(String nombre);
-    boolean existsByNombreValorAndIdNot(String nombre, Long id);
-    Optional<SedeEntidad> findByNombreValor(String nombre);
+    boolean existsByNombre(String nombre);
+    boolean existsByNombreAndIdNot(String nombre, Long id);
+    Optional<SedeEntidad> findByNombre(String nombre);
 
 }

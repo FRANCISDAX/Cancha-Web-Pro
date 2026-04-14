@@ -63,6 +63,7 @@ public class CanchaEntidad {
     @Builder.Default
     private LocalDateTime fechaActualizacion = LocalDateTime.now();
 
+    // 🔗 Relación con Sede.
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sede_id")
     private SedeEntidad sede;

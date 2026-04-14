@@ -59,17 +59,18 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
 
     @Override
     public void eliminarUsuario(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Esto es Eliminar Not supported yet.");
     }
 
     @Override
     public List<UsuarioResponse> obtenerUsuariosActivas() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Esto es Usuario Activo Not supported yet.");
     }
 
     @Override
     public Usuario obtenerusuario(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return usuarioRepositorioPuerto.buscarPorId(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
 
 

@@ -45,17 +45,17 @@ public class UsuarioRepositorioAdaptador implements UsuarioRepositorioPuerto{
 
     @Override
     public void eliminar(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Eliminar Not supported yet.");
     }
 
     @Override
     public boolean existePorNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return usuarioJpaRepositorio.existsByNombre(nombre);
     }
 
     @Override
     public boolean existePorNombreYIdNot(String nombre, Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return usuarioJpaRepositorio.existsByNombreAndIdNot(nombre, id);
     }
 
 }

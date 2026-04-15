@@ -23,7 +23,7 @@ public class Usuario {
     // 🔥 Constructores.
     public Usuario() {}
 
-    public Usuario(NombreUsuario nombre, String email, String telefono, TipoUsuario tipo) {
+    public Usuario(NombreUsuario nombre, EmailUsuario email, String telefono, TipoUsuario tipo) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
@@ -35,7 +35,7 @@ public class Usuario {
     // 🔧 Getters (PROTEGIDOS).
     public Long getId() { return id; }
     public NombreUsuario getNombre() { return nombre; }
-    public String getEmail() { return email; }
+    public EmailUsuario getEmail() { return email; }
     public String getTelefono() { return telefono; }
     public TipoUsuario getTipo() { return tipo; }
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
@@ -45,14 +45,10 @@ public class Usuario {
     public void setId(Long id) { this.id = id; }
 
     // 🧠 Reglas de negocio
-    public void actualizarDatos(NombreUsuario nombre, String email, String telefono) {
+    public void actualizarDatos(NombreUsuario nombre, EmailUsuario email, String telefono) {
 
         if (nombre == null) {
             throw new BusinessValidationException("El nombre no puede ser nulo");
-        }
-
-        if (email == null || email.isBlank()) {
-            throw new BusinessValidationException("El email no puede ser vacío");
         }
 
         this.nombre = nombre;

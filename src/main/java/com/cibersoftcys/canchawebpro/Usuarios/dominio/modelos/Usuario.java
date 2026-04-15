@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.cibersoftcys.canchawebpro.Excepciones.BusinessValidationException;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.enums.TipoUsuario;
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.valueObject.EmailUsuario;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.valueObject.NombreUsuario;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.valueObject.PasswordUsuario;
 
@@ -12,7 +13,7 @@ public class Usuario {
     // 📌 Atributos.
     private Long id;
     private NombreUsuario nombre;
-    private String email;
+    private EmailUsuario email;
     private String telefono;
     private PasswordUsuario passwordHash;
     private TipoUsuario tipo;

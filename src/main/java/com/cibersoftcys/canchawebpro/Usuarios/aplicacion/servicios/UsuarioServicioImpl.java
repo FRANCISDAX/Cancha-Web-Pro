@@ -11,6 +11,8 @@ import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.UsuarioRequest;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.UsuarioResponse;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.mapeadores.UsuarioMapperApp;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.Usuario;
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.enums.TipoUsuario;
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.valueObject.PasswordUsuario;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.puertos.entrada.UsuarioDominioPuerto;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.puertos.entrada.UsuarioServicioPuerto;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.puertos.salida.UsuarioRepositorioPuerto;
@@ -94,6 +96,48 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
             .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
 
- 
+    @Override
+    public UsuarioResponse actualizarTelefono(Long id, String telefono) {
+         Usuario usuario = usuarioRepositorioPuerto.buscarPorId(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado."));
+
+        usuario.actualizarTelefono(telefono);
+
+        Usuario actualizado = usuarioRepositorioPuerto.guardar(usuario);
+
+        return usuarioMapperApp.toResponse(actualizado);
+    }
+
+    @Override
+    public void cambiarPassword(Long id, String passwordActual, String nuevaPassword) {
+        Usuario usuario = usuarioRepositorioPuerto.buscarPorId(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        if (!usuario.tienePassword()) {
+            throw new BusinessValidationException("Usuario no tiene password configurado.");
+        }
+
+        if (passwordActual.equals(nuevaPassword)) {
+            throw new BusinessValidationException("La nueva contraseña no puede ser igual.");
+        }
+
+        usuario.cambiarPassword(PasswordUsuario.crear(nuevaPassword));
+
+        usuarioRepositorioPuerto.guardar(usuario);
+    }
+
+    @Override
+    public UsuarioResponse cambiarTipo(Long id, String tipo) {
+        Usuario usuario = usuarioRepositorioPuerto.buscarPorId(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        TipoUsuario nuevoTipo = TipoUsuario.valueOf(tipo);
+
+        usuario.cambiarTipo(nuevoTipo);
+
+        Usuario actualizado = usuarioRepositorioPuerto.guardar(usuario);
+
+        return usuarioMapperApp.toResponse(actualizado);
+    } 
 
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.cibersoftcys.canchawebpro.Excepciones.BusinessValidationException;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.enums.TipoUsuario;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.valueObject.NombreUsuario;
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.valueObject.PasswordUsuario;
 
 public class Usuario {
 
@@ -13,8 +14,10 @@ public class Usuario {
     private NombreUsuario nombre;
     private String email;
     private String telefono;
+    private PasswordUsuario passwordHash;
     private TipoUsuario tipo;
     private LocalDateTime fechaRegistro;
+    private LocalDateTime fechaActualizacion;
 
     // 🔥 Constructores.
     public Usuario() {}
@@ -25,6 +28,7 @@ public class Usuario {
         this.telefono = telefono;
         this.tipo = (tipo != null) ? tipo : TipoUsuario.CLIENTE;
         this.fechaRegistro = LocalDateTime.now();
+        this.fechaActualizacion = fechaRegistro;
     }
 
     // 🔧 Getters (PROTEGIDOS).
@@ -34,6 +38,7 @@ public class Usuario {
     public String getTelefono() { return telefono; }
     public TipoUsuario getTipo() { return tipo; }
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
+    public PasswordUsuario getPassword() { return passwordHash; }
 
     // 🔧 Setters CONTROLADOS.
     public void setId(Long id) { this.id = id; }
@@ -52,6 +57,7 @@ public class Usuario {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
+        marcarActualizacion();
     }
 
     public void cambiarTipo(TipoUsuario nuevoTipo) {
@@ -65,6 +71,7 @@ public class Usuario {
         }
 
         this.tipo = nuevoTipo;
+        marcarActualizacion();
     }
 
     public boolean esCliente() {
@@ -73,6 +80,22 @@ public class Usuario {
 
     public boolean esAdmin() {
         return this.tipo == TipoUsuario.ADMIN;
+    }
+
+    public void asignarPassword(PasswordUsuario password) {
+        if (password == null) {
+            throw new BusinessValidationException("La contraseña es obligatoria");
+        }
+
+        this.passwordHash = password;
+    }
+
+    public boolean tienePassword() {
+        return this.passwordHash != null;
+    }
+
+    private void marcarActualizacion() {
+        this.fechaActualizacion = LocalDateTime.now();
     }
 
 }

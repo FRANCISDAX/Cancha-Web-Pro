@@ -39,6 +39,7 @@ public class Usuario {
     public String getTelefono() { return telefono; }
     public TipoUsuario getTipo() { return tipo; }
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
+    public LocalDateTime getFechaActualizacion() { return fechaActualizacion; }
     public PasswordUsuario getPassword() { return passwordHash; }
 
     // 🔧 Setters CONTROLADOS.
@@ -48,7 +49,11 @@ public class Usuario {
     public void actualizarDatos(NombreUsuario nombre, EmailUsuario email, String telefono) {
 
         if (nombre == null) {
-            throw new BusinessValidationException("El nombre no puede ser nulo");
+            throw new BusinessValidationException("El Nombre no puede ser nulo.");
+        }
+
+        if (email == null) {
+            throw new BusinessValidationException("El Email es obligatorio.");
         }
 
         this.nombre = nombre;
@@ -85,6 +90,20 @@ public class Usuario {
         }
 
         this.passwordHash = password;
+        marcarActualizacion();
+    }
+
+    public void cambiarPassword(PasswordUsuario nuevoPassword) {
+        if (nuevoPassword == null) {
+            throw new BusinessValidationException("La contraseña es obligatoria.");
+        }
+
+        if (this.passwordHash != null && this.passwordHash.equals(nuevoPassword)) {
+            throw new BusinessValidationException("La nueva contraseña no puede ser igual a la anterior.");
+        }
+
+        this.passwordHash = nuevoPassword;
+        marcarActualizacion();
     }
 
     public boolean tienePassword() {

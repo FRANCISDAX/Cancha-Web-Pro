@@ -32,9 +32,10 @@ public class UsuarioEntidad {
     @Column(name = "tipo", nullable = false)
     private TipoUsuario tipo;
 
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "fecha_registro", nullable = false)
+    @Column(name = "fecha_registro", nullable = false, updatable=false)
     private LocalDateTime fechaRegistro;
 
     @Column(name = "fecha_actualizacion", nullable = false)
@@ -43,6 +44,12 @@ public class UsuarioEntidad {
     @PrePersist
     public void prePersist() {
         fechaRegistro = LocalDateTime.now();
+        fechaActualizacion = fechaRegistro;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaActualizacion = LocalDateTime.now();
     }
 
 }

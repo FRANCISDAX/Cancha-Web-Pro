@@ -45,7 +45,7 @@ public class UsuarioRepositorioAdaptador implements UsuarioRepositorioPuerto{
 
     @Override
     public void eliminar(Long id) {
-        throw new UnsupportedOperationException("Eliminar Not supported yet.");
+        usuarioJpaRepositorio.deleteById(id);
     }
 
     @Override
@@ -56,6 +56,11 @@ public class UsuarioRepositorioAdaptador implements UsuarioRepositorioPuerto{
     @Override
     public boolean existePorNombreYIdNot(String nombre, Long id) {
         return usuarioJpaRepositorio.existsByNombreAndIdNot(nombre, id);
+    }
+
+    @Override
+    public boolean existePorEmail(String email) {
+        return usuarioJpaRepositorio.existsByEmail(email);
     }
 
 }

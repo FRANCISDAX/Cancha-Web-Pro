@@ -46,24 +46,16 @@ public class Usuario {
     public void setId(Long id) { this.id = id; }
 
     // 🧠 Reglas de negocio
-    public void actualizarDatos(NombreUsuario nombre, EmailUsuario email, String telefono) {
-
-        if (nombre == null) {
-            throw new BusinessValidationException("El Nombre no puede ser nulo.");
+    public void actualizarTelefono(String telefono) {
+        if (telefono == null || telefono.isBlank()) {
+            throw new BusinessValidationException("El teléfono es obligatorio");
         }
 
-        if (email == null) {
-            throw new BusinessValidationException("El Email es obligatorio.");
-        }
-
-        this.nombre = nombre;
-        this.email = email;
         this.telefono = telefono;
         marcarActualizacion();
     }
 
     public void cambiarTipo(TipoUsuario nuevoTipo) {
-
         if (nuevoTipo == null) {
             throw new BusinessValidationException("El tipo de usuario es obligatorio");
         }

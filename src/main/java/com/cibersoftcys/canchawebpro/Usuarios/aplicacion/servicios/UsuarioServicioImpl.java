@@ -31,8 +31,14 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
         if (usuarioRepositorioPuerto.existePorNombre(request.getNombre())) {
              throw new BusinessValidationException("Ya existe un Usuario con el nombre: " + request.getNombre());
         }
-
+        
         Usuario usuario = usuarioMapperApp.toDomain(request);
+        if (usuarioRepositorioPuerto.existePorEmail(usuario.getEmail().getValor())) {
+            throw new BusinessValidationException(
+                "Ya existe un usuario con el email: " + usuario.getEmail().getValor()
+            );
+        }
+
         Usuario usuarioGuardado = usuarioRepositorioPuerto.guardar(usuario);
         return usuarioMapperApp.toResponse(usuarioGuardado);
     }
@@ -54,12 +60,27 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
 
     @Override
     public UsuarioResponse actualizarUsuario(Long id, UsuarioRequest request) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Usuario usuario = usuarioRepositorioPuerto.buscarPorId(id)
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Usuario no encontrado con id: " + id
+            ));
+
+        usuario.actualizarTelefono(request.getTelefono());
+
+        Usuario actualizado = usuarioRepositorioPuerto.guardar(usuario);
+
+        return usuarioMapperApp.toResponse(actualizado);
     }
 
     @Override
     public void eliminarUsuario(Long id) {
-        throw new UnsupportedOperationException("Esto es Eliminar Not supported yet.");
+        if (!usuarioRepositorioPuerto.buscarPorId(id).isPresent()) {
+            throw new ResourceNotFoundException(
+                "Usuario no encontrado con id: " + id
+            );
+        }
+        
+        usuarioRepositorioPuerto.eliminar(id);
     }
 
     @Override
@@ -73,5 +94,6 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
             .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
 
+ 
 
 }

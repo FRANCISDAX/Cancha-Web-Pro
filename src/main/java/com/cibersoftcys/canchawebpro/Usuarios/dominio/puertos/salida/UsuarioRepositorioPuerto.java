@@ -13,5 +13,5 @@ public interface UsuarioRepositorioPuerto {
     void eliminar(Long id);
     boolean existePorNombre(String nombre);
     boolean existePorNombreYIdNot(String nombre, Long id);
-    
+    boolean existePorEmail(String email);   
 }

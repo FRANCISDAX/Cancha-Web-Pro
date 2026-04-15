@@ -12,5 +12,6 @@ public interface PostgreUsuarioRepositorio extends  JpaRepository<UsuarioEntidad
     boolean existsByNombre(String nombre);
     boolean existsByNombreAndIdNot(String nombre, Long id);
     Optional<SedeEntidad> findByNombre(String nombre);
+    boolean existsByEmail(String email);
 
 }

@@ -47,4 +47,13 @@ public class PasswordUsuario {
         return valor;
     }
 
+    public static PasswordUsuario desdeHash(String hash) {
+
+        if (hash == null || hash.isBlank()) {
+            throw new BusinessValidationException("El hash no puede ser vacío");
+        }
+
+        return new PasswordUsuario(hash);
+    }
+    
 }

@@ -32,8 +32,13 @@ public class UsuarioEntidad {
     @Column(name = "tipo", nullable = false)
     private TipoUsuario tipo;
 
+    private String password;
+
     @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
+
+    @Column(name = "fecha_actualizacion", nullable = false)
+    private LocalDateTime fechaActualizacion;
 
     @PrePersist
     public void prePersist() {

@@ -34,7 +34,7 @@ public class UsuarioMapper {
         if (entidad == null) return null;
          Usuario usuario = new Usuario(
             new NombreUsuario(entidad.getNombre()),
-            EmailUsuario.crear(entidad.getEmail()), // ✅ FIX
+            EmailUsuario.crear(entidad.getEmail()),
             entidad.getTelefono(),
             entidad.getTipo()
         );

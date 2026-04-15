@@ -16,10 +16,16 @@ public class UsuarioRequest {
     private String nombre;
 
     @NotBlank(message="Email es obligatorio.")
+    @Email(message = "Formato de email inválido")
     @Schema(description = "Email del Usuario", example = "ejemplo@ejemplo.com")
     private String email;
 
     @Schema(description = "Fono del Usuario", example = "999 999 999")
     private String telefono;
 
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
+    @Schema(description = "Contraseña del Usuario", example = "Password123")
+    private String password;
+    
 }

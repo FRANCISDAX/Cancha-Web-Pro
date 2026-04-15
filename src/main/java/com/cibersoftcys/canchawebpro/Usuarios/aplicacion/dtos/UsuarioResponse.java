@@ -10,7 +10,8 @@ import lombok.Data;
     "nombre",
     "email",
     "telefono",
-    "tipo"
+    "tipo",
+    "fechaRegistro"
 })
 @Schema(name="UsuarioRespuesta")
 @Data
@@ -21,4 +22,6 @@ public class UsuarioResponse {
     private String email;
     private String telefono;
     private String tipo;
+    private String fechaRegistro;
+    
 }

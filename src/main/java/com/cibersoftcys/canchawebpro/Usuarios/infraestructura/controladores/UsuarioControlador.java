@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.LoginRequest;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.PasswordUpdateRequest;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.TelefonoUpdateRequest;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.UsuarioRequest;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.UsuarioResponse;
+import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.mapeadores.UsuarioMapperApp;
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.Usuario;
 import com.cibersoftcys.canchawebpro.Usuarios.dominio.puertos.entrada.UsuarioServicioPuerto;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,6 +35,7 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioControlador {
 
     private final UsuarioServicioPuerto usuarioServicioPuerto;
+    private final UsuarioMapperApp usuarioMapperApp;
 
     @Operation(summary = "Lista todos los Usuarios.")
     @GetMapping
@@ -70,5 +74,16 @@ public class UsuarioControlador {
 
         return ResponseEntity.noContent().build();
     }
-    
+ 
+    @PostMapping("/auth/login")
+    public ResponseEntity<UsuarioResponse> login(@RequestBody LoginRequest request) {
+
+        Usuario usuario = usuarioServicioPuerto.login(
+            request.getEmail(),
+            request.getPassword()
+        );
+
+        return ResponseEntity.ok(usuarioMapperApp.toResponse(usuario));
+    }
+
 }

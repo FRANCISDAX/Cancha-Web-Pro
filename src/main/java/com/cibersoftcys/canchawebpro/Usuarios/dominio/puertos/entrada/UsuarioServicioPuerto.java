@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.UsuarioRequest;
 import com.cibersoftcys.canchawebpro.Usuarios.aplicacion.dtos.UsuarioResponse;
+import com.cibersoftcys.canchawebpro.Usuarios.dominio.modelos.Usuario;
 
 public interface UsuarioServicioPuerto {
 
@@ -16,5 +17,6 @@ public interface UsuarioServicioPuerto {
     UsuarioResponse actualizarTelefono(Long id, String telefono);
     void cambiarPassword(Long id, String passwordActual, String nuevaPassword);
     UsuarioResponse cambiarTipo(Long id, String tipo);
-        
+    Usuario login(String email, String password);
+    
 }

@@ -142,13 +142,16 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
         Usuario actualizado = usuarioRepositorioPuerto.guardar(usuario);
 
         return usuarioMapperApp.toResponse(actualizado);
-    } 
+    }
 
+    @Override
     public Usuario login(String email, String password) {
+        email = email.trim().toLowerCase();
 
         Usuario usuario = usuarioRepositorioPuerto.buscarPorEmail(email)
             .orElseThrow(() -> new BusinessValidationException("Credenciales incorrectas."));
 
+        // 🔐 Verificar password (bcrypt)
         if (!usuario.getPassword().verificar(password)) {
             throw new BusinessValidationException("Credenciales incorrectas.");
         }

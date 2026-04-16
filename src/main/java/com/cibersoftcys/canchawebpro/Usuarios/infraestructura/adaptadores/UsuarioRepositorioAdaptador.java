@@ -63,4 +63,10 @@ public class UsuarioRepositorioAdaptador implements UsuarioRepositorioPuerto{
         return usuarioJpaRepositorio.existsByEmail(email);
     }
 
+    @Override
+    public Optional<Usuario> buscarPorEmail(String email) {
+        return usuarioJpaRepositorio.findByEmail(email)
+                .map(usuarioMapper::paraDominio);   
+    }
+
 }

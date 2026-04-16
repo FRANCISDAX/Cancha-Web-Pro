@@ -1,6 +1,7 @@
 package com.cibersoftcys.canchawebpro.Usuarios.aplicacion.servicios;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -117,6 +118,10 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
             throw new BusinessValidationException("Usuario no tiene password configurado.");
         }
 
+        if (!usuario.getPassword().verificar(passwordActual)) {
+            throw new BusinessValidationException("La contraseña actual es incorrecta");
+        }
+
         if (passwordActual.equals(nuevaPassword)) {
             throw new BusinessValidationException("La nueva contraseña no puede ser igual.");
         }
@@ -140,4 +145,16 @@ public class UsuarioServicioImpl implements UsuarioServicioPuerto, UsuarioDomini
         return usuarioMapperApp.toResponse(actualizado);
     } 
 
+    public Usuario login(String email, String password) {
+
+        Usuario usuario = usuarioRepositorioPuerto.buscarPorEmail(email)
+            .orElseThrow(() -> new BusinessValidationException("Credenciales incorrectas."));
+
+        if (!usuario.getPassword().verificar(password)) {
+            throw new BusinessValidationException("Credenciales incorrectas.");
+        }
+
+        return usuario;
+    }
+    
 }

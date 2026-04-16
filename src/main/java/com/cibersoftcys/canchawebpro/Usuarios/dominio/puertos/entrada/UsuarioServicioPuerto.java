@@ -16,5 +16,5 @@ public interface UsuarioServicioPuerto {
     UsuarioResponse actualizarTelefono(Long id, String telefono);
     void cambiarPassword(Long id, String passwordActual, String nuevaPassword);
     UsuarioResponse cambiarTipo(Long id, String tipo);
-    
+        
 }

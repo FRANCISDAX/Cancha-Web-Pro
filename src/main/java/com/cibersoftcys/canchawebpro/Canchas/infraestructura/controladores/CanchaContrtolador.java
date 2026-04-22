@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -67,6 +68,20 @@ public class CanchaContrtolador {
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         canchaServicioPuerto.eliminarCancha(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Poner cancha en Mantenimiento.")
+    @PatchMapping("/{id}/mantenimiento")
+    public ResponseEntity<Void> ponerEnMantenimiento(@PathVariable Long id) {
+        canchaServicioPuerto.ponerEnMantenimiento(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "Activar cancha (Disponible).")
+    @PatchMapping("/{id}/activar")
+    public ResponseEntity<Void> activarCancha(@PathVariable Long id) {
+        canchaServicioPuerto.activarCancha(id);
+        return ResponseEntity.ok().build();
     }
 
 }
